@@ -1,0 +1,22 @@
+---
+- name: configure ldap clients
+  hosts: [devops]
+  remote_user: root
+  become: yes
+
+  tasks:
+  - name: install ldap client packages
+    yum:
+      name: openldap-clients
+      state: latest
+
+  - name: install ldap client packages
+    yum:
+      name: nss-pam-ldapd
+      state: latest
+
+  - name: install ldap client packages
+    yum:
+      name: sssd
+      state: latest
+~
