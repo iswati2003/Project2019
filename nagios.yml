@@ -1,0 +1,30 @@
+---
+- name: install nagios client packages
+  hosts: All
+  remote_user: ansible
+  become: yes
+
+  tasks:
+    yum:
+      name: epel-release
+      state: latest
+
+- name: install nrpe
+  yum:
+    name: nrpe
+    state: latest
+
+- name: install nagios-plugins-all
+    yum:
+      name: nagios-plugins-all
+      state: latest
+
+ - name: start nrpe service
+    service:
+      name: nrpe
+      state: restarted
+
+ - name: enable nrpe
+    service:
+      name: nrpe
+      enabled: yes
