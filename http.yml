@@ -1,0 +1,22 @@
+---
+- name: install httpd
+  hosts: webservers
+  remote_user: root
+  become: yes
+
+  tasks:
+
+  - name: install latest version httpd
+    yum:
+      name: httpd
+      state: latest
+
+  - name: enable httpd
+    service:
+      name: httpd
+      enabled: yes
+
+  - name: start httpd
+    service:
+      name: httpd
+      state: started
