@@ -1,0 +1,33 @@
+---
+- name: install and setup autofs client
+  hosts: all
+  remote_user: root
+  become: yes
+
+  tasks:
+
+  - name: install autofs
+    yum:
+      name: autofs
+      state: latest
+
+  - name: start and enable autofs
+    service:
+      name: autofs
+      state: started
+      enabled: yes
+
+  - name: create master map file (/etc/auto.master)
+    template:
+      src: /etc/ansible/templates/auto.master.j2
+      dest: /etc/auto.master
+
+  - name: create map file (/etc/auto.demo mentioned in /etc/auto.master)
+    template:
+      src: /etc/ansible/templates/auto.demo.j2
+      dest: /etc/auto.demo
+
+  - name: restart autofs service
+    service:
+      name: autofs
+      state: restarted
