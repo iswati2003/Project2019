@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Example') {
             steps {
-              echo 'Hello I am Swati & This is my first jenkinsfile'
+              echo 'Hello I am Swati & this is my jenkinsfile'
               sh 'echo myCustomEnvVar = $myCustomEnvVar'
             }
         }
